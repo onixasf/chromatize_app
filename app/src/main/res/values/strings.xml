@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chromatize</string>
+    <string name="happy_emote">happy emote</string>
+    <string name="smile_emote">smile emote</string>]
+    <string name="neutral_emote">neutral emote</string>
+    <string name="sad_emote">sad emote</string>
+    <string name="crying_emote">crying emote</string>
+    <string name="add_action_button">add action</string>
+</resources>
