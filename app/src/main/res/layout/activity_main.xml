@@ -340,7 +340,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_add"
         android:backgroundTint="@color/blue"
@@ -370,12 +370,24 @@
             android:layout_alignParentBottom="true"  />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_music"
+            android:id="@+id/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_text"
+            android:backgroundTint="@color/blue"
+            app:fabSize="mini"
+            android:layout_toStartOf="@id/fab"
+            android:layout_alignParentBottom="true" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_music"
+            android:src="@drawable/icon_camera"
             android:backgroundTint="@color/blue"
             app:fabSize="mini"
             android:layout_above="@id/fab"
@@ -383,16 +395,17 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_text"
+            android:id="@+id/button_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_text"
+            android:src="@drawable/icon_music"
             android:backgroundTint="@color/blue"
             app:fabSize="mini"
-            android:layout_toStartOf="@id/fab"
-            android:layout_alignParentBottom="true" />
+            android:layout_above="@id/fab"
+            android:layout_alignParentEnd="true"/>
+
 
     </LinearLayout>
 

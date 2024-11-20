@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fabMain: FloatingActionButton
     private lateinit var subButtonsLayout: LinearLayout
     private lateinit var fabMusic: FloatingActionButton
+    private lateinit var fabCamera: FloatingActionButton
     private lateinit var fabText: FloatingActionButton
     private lateinit var fabColor: FloatingActionButton
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         fabMain = findViewById(R.id.fab)
         subButtonsLayout = findViewById(R.id.sub_buttons_layout)
         fabMusic = findViewById(R.id.button_music)
+        fabCamera = findViewById(R.id.button_camera)
         fabText = findViewById(R.id.button_text)
         fabColor = findViewById(R.id.button_color)
     }
@@ -45,13 +47,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         fabMusic.setOnClickListener {
-            // Lakukan tindakan untuk tombol musik
+            val intent = Intent(this, PlaylistActivity::class.java)
+            startActivity(intent)
+            hideSubButtons()
+            fabMain.setImageResource(R.drawable.ic_add)
+        }
+
+        fabCamera.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
             hideSubButtons()
             fabMain.setImageResource(R.drawable.ic_add)
         }
 
         fabText.setOnClickListener {
-            // Lakukan tindakan untuk tombol teks
+            val intent = Intent(this, TextActivity::class.java)
+            startActivity(intent)
             hideSubButtons()
             fabMain.setImageResource(R.drawable.ic_add)
         }
