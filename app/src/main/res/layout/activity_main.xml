@@ -15,7 +15,7 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -48,29 +48,29 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="70dp"
                         android:layout_marginTop="30dp"
                         android:text="Hello, Yassar!"
                         android:textColor="@color/black"
                         android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="70dp"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="70dp"
                         android:layout_marginTop="5dp"
                         android:text="How do you feel today?"
-                        android:textColor="@color/grey"
-                        android:layout_marginStart="70dp"/>
+                        android:textColor="@color/grey" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="50dp"
+                        android:layout_gravity="center"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="50dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_gravity="center">
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -81,89 +81,25 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginEnd="16dp"
-                                app:cardElevation="4dp"
+                                app:cardBackgroundColor="@android:color/holo_blue_dark"
                                 app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@android:color/holo_blue_dark">
+                                app:cardElevation="4dp">
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/happy"
                                     android:layout_gravity="center"
-                                    android:contentDescription="@string/happy_emote" />
+                                    android:contentDescription="@string/happy_emote"
+                                    android:src="@drawable/happy" />
 
                             </androidx.cardview.widget.CardView>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Happy"
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp"
                                 android:layout_marginStart="10dp"
-                                android:layout_marginTop="5dp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginEnd="16dp"
-                                app:cardElevation="4dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@android:color/holo_green_light">
-
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/smile"
-                                    android:layout_gravity="center"
-                                    android:contentDescription="@string/smile_emote" />
-
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Good"
-                                android:textColor="@android:color/black"
-                                android:textSize="12sp"
-                                android:layout_marginStart="13dp"
-                                android:layout_marginTop="5dp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginEnd="16dp"
-                                app:cardElevation="4dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@color/yellow_light">
-
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/neutral"
-                                    android:layout_gravity="center"
-                                    android:contentDescription="@string/neutral_emote" />
-
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Neutral"
-                                android:layout_marginStart="9dp"
                                 android:layout_marginTop="5dp"
+                                android:text="Happy"
                                 android:textColor="@android:color/black"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -177,27 +113,91 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginEnd="16dp"
-                                app:cardElevation="4dp"
+                                app:cardBackgroundColor="@android:color/holo_green_light"
                                 app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@android:color/holo_orange_dark">
+                                app:cardElevation="4dp">
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/sad"
                                     android:layout_gravity="center"
-                                    android:contentDescription="@string/sad_emote" />
+                                    android:contentDescription="@string/smile_emote"
+                                    android:src="@drawable/smile" />
 
                             </androidx.cardview.widget.CardView>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="13dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Good"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="16dp"
+                                app:cardBackgroundColor="@color/yellow_light"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@string/neutral_emote"
+                                    android:src="@drawable/neutral" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Neutral"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="16dp"
+                                app:cardBackgroundColor="@android:color/holo_orange_dark"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@string/sad_emote"
+                                    android:src="@drawable/sad" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Bad"
                                 android:textColor="@android:color/black"
-                                android:textSize="12sp"
-                                android:layout_marginStart="17dp"
-                                android:layout_marginTop="5dp"/>
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -209,27 +209,27 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginEnd="10dp"
-                                app:cardElevation="4dp"
+                                app:cardBackgroundColor="@android:color/holo_red_dark"
                                 app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@android:color/holo_red_dark">
+                                app:cardElevation="4dp">
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/crying"
                                     android:layout_gravity="center"
-                                    android:contentDescription="@string/crying_emote" />
+                                    android:contentDescription="@string/crying_emote"
+                                    android:src="@drawable/crying" />
 
                             </androidx.cardview.widget.CardView>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Very Bad"
                                 android:textColor="@android:color/black"
-                                android:textSize="12sp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="5dp"/>
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -277,11 +277,17 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="160dp"
+                    android:layout_marginStart="180dp"
                     android:src="@drawable/ic_action_name"
                     app:tint="#2196F3" />
 
             </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="18dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -293,11 +299,28 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/historyImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_action_name"
+                app:tint="#2196F3" />
+        </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCategories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="18dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -309,11 +332,31 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/articleRecommendationsImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_action_name"
+                app:tint="#2196F3" />
+        </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTrending"
+                android:id="@+id/recyclerViewArticleRecommendations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" />
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="18dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -325,11 +368,26 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/meditationRecommendationsImageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_action_name"
+                app:tint="#2196F3" />
+        </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPlaylist"
+                android:id="@+id/recyclerViewMeditationRecommendations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
 
         </LinearLayout>
 
@@ -340,7 +398,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_add"
         android:backgroundTint="@color/blue"
@@ -356,7 +414,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_color"
@@ -367,7 +426,7 @@
             android:backgroundTint="@color/blue"
             app:fabSize="mini"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"  />
+            android:layout_alignParentBottom="true"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_text"

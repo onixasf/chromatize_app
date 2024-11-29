@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Emotional History"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:layout_gravity="center"/>
+
+    <!-- Subtitle for emotional week -->
+    <TextView
+        android:id="@+id/titleEmotionalWeekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your feelings this week"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"/>
+
+    <!-- Layout for Graph and Mood Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
+
+        <!-- Mood Buttons Section (on the left) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Happy Mood -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@android:color/holo_blue_dark"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/happy_emote"
+                        android:src="@drawable/happy" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Happy"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <!-- Good Mood -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@android:color/holo_green_light"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/smile_emote"
+                        android:src="@drawable/smile" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Good"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <!-- Neutral Mood -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/yellow_light"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/neutral_emote"
+                        android:src="@drawable/neutral" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Neutral"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <!-- Bad Mood -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@android:color/holo_orange_dark"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/sad_emote"
+                        android:src="@drawable/sad" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Bad"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <!-- Very Bad Mood -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:cardBackgroundColor="@android:color/holo_red_dark"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/crying_emote"
+                        android:src="@drawable/crying" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Very Bad"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Graph View on the right side -->
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_weight="2"
+            android:id="@+id/graphEmot"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Sunday"
+            android:textColor="@android:color/black"
+            android:textSize="10sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Monday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Tuesday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Wednesday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Thursday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Friday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Saturday"
+            android:textColor="@android:color/black"
+            android:textSize="11sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- RecyclerView for history -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/historyRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/titleTextWeekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your story this week"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/titleCameraWeekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your color experience this week"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/titlePlaylistWeekView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your playlist this week"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"/>
+</LinearLayout>

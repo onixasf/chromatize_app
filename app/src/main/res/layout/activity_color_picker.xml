@@ -15,7 +15,7 @@
         android:layout_marginTop="100dp"
         android:text="How was your day?"
         android:textStyle="bold"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textColor="@color/black"
         android:gravity="center"/>
 

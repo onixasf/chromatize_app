@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class PlaylistAdapter(private val context: Context, private val playlists: List<PlaylistItem>) :
-    RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
+class PlaylistAdapter(
+    private val context: Context,
+    private var playlists: List<PlaylistItem>
+) : RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
 
     inner class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.playlist_name)
@@ -29,6 +31,11 @@ class PlaylistAdapter(private val context: Context, private val playlists: List<
                 context.startActivity(intent)
             }
         }
+    }
+
+    fun updatePlaylists(newPlaylists: List<PlaylistItem>) {
+        playlists = newPlaylists
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {

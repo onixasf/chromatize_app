@@ -11,13 +11,15 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class CameraActivity : AppCompatActivity() {
 
@@ -28,8 +30,8 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var selectedColorText: TextView
     private lateinit var colorInfoTextView: TextView
-    private lateinit var colorInfoText: TextView
     private var imageBitmap: Bitmap? = null
+    private var selectedMoodColor: String? = null
 
     private val colors = mapOf(
         R.id.blue_button to Pair("Blue", 0xFF0099CC.toInt()),
@@ -76,16 +78,16 @@ class CameraActivity : AppCompatActivity() {
         btnSave = findViewById(R.id.saveButton)
         selectedColorText = findViewById(R.id.selected_color_text)
         colorInfoTextView = findViewById(R.id.colorInfoTextView)
-        colorInfoText = findViewById(R.id.colorInfoText)
 
-        // Set up color buttons
+        /// Set up color buttons
         colors.forEach { (buttonId, colorPair) ->
             setupColorButton(buttonId, colorPair.first, colorPair.second)
         }
 
         // Setup Cancel button
         btnCancel.setOnClickListener {
-            selectedColorText.text = "Selected Color: None"
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         requestPermissions()  // Meminta izin saat Activity dimulai
@@ -100,7 +102,17 @@ class CameraActivity : AppCompatActivity() {
 
         btnSave.setOnClickListener {
             if (imageBitmap != null) {
-                saveImage(imageBitmap!!) // Menyimpan gambar yang diambil
+                if (selectedMoodColor != null) {
+                    // Mood color is selected, save mood and colors
+                    saveImage(imageBitmap!!) // Save the captured image
+
+                    // Navigate back to MainActivity
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish() // Close CameraActivity
+                } else {
+                    // Show a message if no mood color is selected
+                    Toast.makeText(this, "Silakan pilih mood color sebelum menyimpan", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Tidak ada gambar untuk disimpan", Toast.LENGTH_SHORT).show()
             }
@@ -111,53 +123,21 @@ class CameraActivity : AppCompatActivity() {
         findViewById<TextView>(buttonId).apply {
             setOnClickListener {
                 selectedColorText.text = "Selected Color: $colorName"
-                // Tidak mengubah warna teks selectedColorText
+                selectedMoodColor = colorName // Save the selected mood color
             }
         }
-    }
-
-    private fun requestPermissions() {
-        val permissionsNeeded = mutableListOf<String>()
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            permissionsNeeded.add(Manifest.permission.CAMERA)
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            permissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
-
-        if (permissionsNeeded.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, permissionsNeeded.toTypedArray(), 100)
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 100) {
-            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                // Izin diberikan, Anda bisa membuka kamera atau galeri
-            } else {
-                Toast.makeText(this, "Izin diperlukan untuk menggunakan kamera dan galeri", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun openCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraLauncher.launch(intent)
-    }
-
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        galleryLauncher.launch(intent)
     }
 
     private fun identifyColors(bitmap: Bitmap) {
         val dominantColors = getDominantColors(bitmap)
         val colorInfo = StringBuilder()
+
         for (color in dominantColors) {
-            colorInfo.append("Color: #${Integer.toHexString(color)}\n")
+            val colorHex = String.format("#%06X", (0xFFFFFF and color)) // Mengubah warna ke format heksadesimal
+            colorInfo.append("Color: $colorHex\n")
         }
+
+        // Update the color info text view
         colorInfoTextView.text = colorInfo.toString()
     }
 
@@ -199,5 +179,41 @@ class CameraActivity : AppCompatActivity() {
         } ?: run {
             Toast.makeText(this, "Gagal mendapatkan URI untuk menyimpan gambar", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun requestPermissions() {
+        val permissionsNeeded = mutableListOf<String>()
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionsNeeded.add(Manifest.permission.CAMERA)
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+
+        if (permissionsNeeded.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this, permissionsNeeded.toTypedArray(), 100)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100) {
+            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                // Izin diberikan, Anda bisa membuka kamera atau galeri
+            } else {
+                Toast.makeText(this, "Izin diperlukan untuk menggunakan kamera dan galeri", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        cameraLauncher.launch(intent)
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        galleryLauncher.launch(intent)
     }
 }

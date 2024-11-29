@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 class ColorPickerActivity : AppCompatActivity() {
     private lateinit var circularColorPickerView: CircularColorPickerView
     private lateinit var confirmButton: ImageView
-    private lateinit var colorInterpretationTextView: TextView // Tambahkan TextView untuk interpretasi
+    private lateinit var colorInterpretationTextView: TextView // TextView for color interpretation
 
-    private var selectedColor: Int = Color.RED // Warna default
+    private var selectedColor: Int = Color.RED // Default color
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,30 +20,41 @@ class ColorPickerActivity : AppCompatActivity() {
 
         circularColorPickerView = findViewById(R.id.color_flower_view)
         confirmButton = findViewById(R.id.confirm_button)
-        colorInterpretationTextView = findViewById(R.id.colorInterpretationTextView) // Hubungkan TextView
+        colorInterpretationTextView = findViewById(R.id.colorInterpretationTextView)
 
-        // Set listener untuk perubahan warna
+        // Set listener for color change
         circularColorPickerView.setColorChangeListener { color ->
             selectedColor = color
-            updateColorInterpretation(selectedColor) // Memperbarui interpretasi warna
+            updateColorInterpretation(selectedColor) // Update color interpretation
         }
 
-        // Set listener untuk tombol konfirmasi
+        // Set listener for confirm button
         confirmButton.setOnClickListener {
-            Toast.makeText(this, "Confirmed color: ${ColorHelper.getColorName(selectedColor)}", Toast.LENGTH_SHORT).show()
-            finish() // Menutup activity setelah konfirmasi
+            val colorName = ColorHelper.getColorName(selectedColor)
+            Toast.makeText(this, "Confirmed color: $colorName", Toast.LENGTH_SHORT).show()
+
+            // You can remove this part if history-saving is no longer needed
+            // saveSelectedColorToHistory(colorName)
+
+            finish() // Close activity after confirmation
         }
     }
 
     private fun updateColorInterpretation(color: Int) {
         val interpretation = when (color) {
-            Color.RED -> "Merah: Saya merasa sangat sedih"
-            Color.parseColor("#FFA500") -> "Oranye: Saya merasa sedih"
-            Color.YELLOW -> "Kuning: Saya merasa biasa saja"
-            Color.parseColor("#FF008000") -> "Hijau: Perasaan saya sedang bagus"
-            Color.BLUE -> "Biru: Saya merasa sangat senang"
+            Color.RED -> "Merah: I feel so sad"
+            Color.parseColor("#FFA500") -> "Oranye: I feel sad"
+            Color.YELLOW -> "Kuning: I don't feel anything at all"
+            Color.parseColor("#FF008000") -> "Hijau: I feel great"
+            Color.BLUE -> "Biru: I feel so happy"
             else -> "Warna tidak dikenali"
         }
-        colorInterpretationTextView.text = interpretation // Perbarui TextView dengan interpretasi
+        colorInterpretationTextView.text = interpretation // Update TextView with interpretation
     }
+
+    // This function has been removed
+    // private fun saveSelectedColorToHistory(colorName: String) {
+    //     val interpretation = colorInterpretationTextView.text.toString()
+    //     ColorHistory.history.add(HistoryItem("ColorPicker", "Selected Color: $colorName", interpretation))
+    // }
 }
